@@ -1,0 +1,315 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="shortcut icon" href="Ebook 1.png" type="image/x-icon" />
+<title>beranda</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; font-family: Arial, sans-serif; }
+
+  body {
+    background: linear-gradient(135deg, #0d0d22, #1c1450, #0d0d22);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: white;
+    overflow-x: hidden;
+    animation: bgMove 10s infinite alternate ease-in-out;
+  }
+
+  @keyframes bgMove {
+    0% { background-position: 0% 50%; }
+    100% { background-position: 100% 50%; }
+  }
+
+  .container {
+    width: 92%;
+    max-width: 780px;
+    margin-top: clamp(25px, 6vw, 60px);
+    text-align: center;
+  }
+
+  /* FOTO PROFIL RESPONSIVE */
+  .profile-pic {
+    width: clamp(110px, 22vw, 180px);
+    height: clamp(110px, 22vw, 180px);
+    border-radius: 50%;
+    background-size: cover;
+    background-position: center;
+    border: 3px solid #fff;
+    margin: auto;
+    animation: pulse 2.3s infinite ease-in-out;
+  }
+
+  @keyframes pulse {
+    50% { transform: scale(1.07); }
+  }
+
+  .box {
+    background: #ffffff15;
+    border: 2px solid #ffffff30;
+    padding: clamp(15px, 4vw, 25px);
+    margin-top: 25px;
+    border-radius: 16px;
+    backdrop-filter: blur(6px);
+    font-size: clamp(14px, 2.5vw, 17px);
+  }
+
+  video {
+    width: 100%;
+    border-radius: 14px;
+  }
+
+  /* SIDEBAR BUTTON */
+  .sidebar-btn {
+    position: fixed;
+    top: 50%;
+    left: clamp(10px, 3vw, 25px);
+    transform: translateY(-50%);
+    background: #000;
+    padding: clamp(8px, 2vw, 14px) clamp(10px, 3vw, 18px);
+    border: 2px solid #fff;
+    border-radius: 12px;
+    cursor: pointer;
+    z-index: 35;
+    transition: 0.4s;
+  }
+
+  /* SIDEBAR */
+  .sidebar {
+    position: fixed;
+    top: 0;
+    left: -260px;
+    width: clamp(220px, 50vw, 260px);
+    height: 100vh;
+    background: #00000090;
+    backdrop-filter: blur(10px);
+    padding-top: clamp(60px, 10vw, 100px);
+    padding-left: 20px;
+    transition: 0.4s;
+    z-index: 30;
+  }
+
+  .sidebar.open { left: 0; }
+
+  .sidebar a {
+    display: block;
+    font-size: clamp(16px, 4vw, 22px);
+    color: white;
+    margin: 18px 0;
+    text-decoration: none;
+  }
+
+  /* PARTIKEL */
+  .particle {
+    position: fixed;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #ffffff70;
+    animation: floatUp linear infinite;
+    bottom: -10px;
+  }
+
+  @keyframes floatUp {
+    0% { transform: translateY(0); opacity: 1; }
+    100% { transform: translateY(-120vh); opacity: 0; }
+  }
+
+  footer {
+    margin: 40px 0;
+    text-align: center;
+    font-size: clamp(12px, 2.5vw, 15px);
+    opacity: .8;
+  }
+
+  /* TRANSLATE BUTTON */
+  .translate-menu {
+    position: fixed;
+    top: 15px;
+    right: 15px;
+    background: #00000080;
+    padding: 8px 12px;
+    border-radius: 12px;
+    border: 1px solid #ffffff40;
+    font-size: clamp(12px, 3vw, 15px);
+    cursor: pointer;
+    z-index: 40;
+    backdrop-filter: blur(6px);
+  }
+
+  #translateBox {
+    display: none;
+    position: fixed;
+    top: 60px;
+    right: 15px;
+    background: #000000b0;
+    padding: 15px;
+    border-radius: 12px;
+    border: 1px solid #ffffff50;
+    z-index: 40;
+    backdrop-filter: blur(6px);
+  }
+
+  #translateBox button {
+    width: 100%;
+    margin: 5px 0;
+    padding: 6px 10px;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+  }
+
+  /* RESPONSIVE BREAKPOINTS */
+  @media (max-width: 480px) {
+    .sidebar-btn { left: 12px; }
+    .sidebar { width: 70%; }
+  }
+
+  @media (min-width: 1024px) {
+    .container { max-width: 900px; }
+  }
+
+
+  /* MONITOR LEBAR 1280px */
+  @media (min-width: 1280px) {
+    .container { max-width: 1050px; }
+    .box { font-size: clamp(16px, 1.4vw, 20px); }
+    .profile-pic { width: 200px; height: 200px; }
+  }
+
+  /* MONITOR BESAR 1440px */
+  @media (min-width: 1440px) {
+    .container { max-width: 1200px; }
+    .box { font-size: clamp(17px, 1.3vw, 21px); }
+    .sidebar { width: 300px; }
+  }
+
+  /* ULTRAWIDE 1600px */
+  @media (min-width: 1600px) {
+    .container { max-width: 1300px; }
+    .profile-pic { width: 230px; height: 230px; }
+    .box { padding: 35px; }
+  }
+
+  /* ULTRAWIDE 1920px */
+  @media (min-width: 1920px){
+    .container { max-width: 1500px; }
+    .box { font-size: 20px; padding: 40px; }
+    .particle { width: 8px; height: 8px; }
+    }
+</style>
+
+
+</head>
+
+<body>
+
+<div class="translate-menu" onclick="toggleTranslate()">🌐 Translate</div>
+
+<div id="translateBox">
+  <button onclick="translateTo('id')"> Bahasa Indonesia</button>
+  <button onclick="translateTo('en')"> English</button>
+</div>
+
+<div class="sidebar-btn" onclick="toggleSidebar()">☰</div>
+
+<div id="sidebar" class="sidebar">
+  <h2 style="color:green; text-align:center;"><b>MENU</b><hr></h2>
+  <a href="https://youtube.com/@biaspelangi-l7y?si=t9GvYADwH-Zt0Lph" class="translate" data-id="youtube" data-en="youtube">youtube</a>
+  <a href="https://www.instagram.com/bias_pelangi_777?igsh=MWg5Y3lvdjQ2a2p1dA==" class="translate" data-id="Instagram" data-en="Instagram">Instagram</a>
+    <a   href="https://discord.gg/AhvVrPKM" class="translate" data-id="DISCORD" data-en="DISCORD">DISCORD</a>
+    <a href="mailto:biaspelangi24@gmail.com?subject=Halo&body=Pesan%20kamu" target="_blank">GMAIL</a>
+  <a href="https://www.chess.com/member/jaxxskdonfjocnnvcrookck" class="translate" data-id="CATUR" data-en="CHESS">CATUR</a>
+    <a href="https://www.mediafire.com/file/dwq6wwi3mv2w1t9/com-gameloft-android-anmp-gloftnohm-58423-62395271-713ea27fc85c8ef00aae3aa07dad3d81.apk/file" class="translate" data-id="PERMAINAN" data-en="GAME">GAME</a>
+</div>
+<div class="container">
+  <div class="profile-pic" style="background-image:url('Ebook 1.png');"></div>
+
+  <div class="box translate"
+       data-id="Halo! Nama saya Bias Pelangi, dan saya adalah seseorang yang memiliki ketertarikan besar pada teknologi, kreativitas, serta pengembangan berbagai proyek digital. Sejak dulu saya selalu penasaran dengan cara 
+       
+       bekerja mulai dari mekanisme sederhana, sistem robotik, hingga bagaimana sebuah website bisa hidup dan bergerak dengan animasi yang halus. Rasa penasaran itulah yang membawa saya terus belajar dan mencoba hal-hal baru.
+
+Saya sangat menikmati proses menciptakan sesuatu dari nol. Mulai dari merancang tampilan website, membuat fitur interaktif, sampai mengembangkan ide teknis seperti sistem otomatis, alat berbasis mekanik, atau aplikasi yang dapat membantu orang lain. Bagi saya, teknologi dan kreativitas adalah dua hal yang tidak bisa dipisahkan keduanya memberi ruang untuk berimajinasi sekaligus menciptakan solusi nyata.
+
+Selain itu, saya juga tertarik untuk membuat karya yang unik dan belum pernah ada sebelumnya, seperti konsep alat robotik, sistem transformasi mekanik, hingga perangkat otomatis yang muncul dari ide imajinatif. Saya percaya bahwa setiap gagasan, sekecil apa pun, bisa berkembang menjadi sesuatu yang hebat ketika dikerjakan dengan tekun dan semangat.
+
+Dalam dunia digital, saya suka mengembangkan website yang cantik, responsif, dan penuh animasi. Saya menikmati proses merancang tampilan yang enak dilihat, menambahkan efek interaktif, serta membuat pengalaman pengguna yang berbeda dari biasanya. Saya ingin setiap karya yang saya buat terasa hidup dan punya keunikan tersendiri.
+
+Bagi saya, belajar tidak pernah selesai. Setiap hari selalu ada hal baru yang bisa dieksplorasi baik itu teknologi web, sistem robotik, aplikasi mobile, logika pemrograman, maupun kreativitas desain. Saya selalu berusaha memperluas pengetahuan, meningkatkan keterampilan, dan menciptakan karya yang bermanfaat bagi banyak orang.
+
+Terima kasih telah meluangkan waktu untuk mengenal saya. Semoga karya-karya yang saya buat dapat memberikan inspirasi, manfaat, dan pengalaman baru bagi siapa saja yang melihat atau menggunakannya. 
+"
+       data-en="my introduction Hello! My name is Bias rainbow, and I am someone with a great passion for technology, creativity, and the development of various digital projects. Since I was young, I’ve always been curious about how things work from simple mechanisms and robotic systems to how a website can come alive and move with smooth animations. That curiosity is what drives me to keep learning and exploring new things.
+
+I truly enjoy the process of creating something from scratch. From designing website interfaces, building interactive features, to developing technical ideas such as automated systems, mechanical-based tools, or applications that can help others. For me, technology and creativity are two things that cannot be separated they provide space to imagine while creating real solutions.
+
+In addition, I’m also interested in creating unique works that have never existed before, such as robotic device concepts, mechanical transformation systems, and automatic tools inspired by imaginative ideas. I believe that every idea, no matter how small, can grow into something remarkable when developed with dedication and passion.
+
+In the digital world, I enjoy developing websites that are beautiful, responsive, and filled with engaging animations. I love the process of designing visually appealing layouts, adding interactive effects, and crafting user experiences that feel different from the ordinary. I want every project I create to feel alive and have its own unique character.
+
+For me, learning never stops. Every day offers something new to explore whether it’s web technology, robotics, mobile applications, programming logic, or creative design. I continuously strive to expand my knowledge, improve my skills, and create works that benefit many people.
+
+Thank you for taking the time to get to know me. I hope the things I create can bring inspiration, value, and new experiences to anyone who sees or uses them.">
+    <b>MY INTRODUCTION</b><br>Click translate<hr>
+  </div>
+
+  <div class="box">
+    <video controls>
+      <source src="B0007.mp4" type="video/mp4">
+    </video>
+  </div>
+</div>
+
+<footer class="translate"
+        data-id="Website dibuat oleh Pengembang Bias pelangi(B...7) • Tahun Pembuatan: 2025"
+        data-en="Website created by Developer Bias rainbow(B...7) • Year: 2025">
+  Website dibuat oleh Pengembang Bias pelangi(B...7) • Tahun Pembuatan: 2025
+</footer>
+
+<script>
+  function toggleSidebar() {
+    const sb = document.getElementById("sidebar");
+    const btn = document.querySelector(".sidebar-btn");
+    sb.classList.toggle("open");
+    btn.style.left = sb.classList.contains("open") ? "260px" : "15px";
+  }
+
+  document.addEventListener("click", function(e) {
+    const sb = document.getElementById("sidebar");
+    if (!sb.contains(e.target) && !e.target.classList.contains("sidebar-btn")) {
+      sb.classList.remove("open");
+      document.querySelector(".sidebar-btn").style.left = "15px";
+    }
+  });
+
+  function spawnParticles() {
+    for (let i = 0; i < 35; i++) {
+      const p = document.createElement("div");
+      p.className = "particle";
+      p.style.left = Math.random() * 100 + "vw";
+      p.style.animationDuration = 3 + Math.random() * 4 + "s";
+      p.style.animationDelay = Math.random() * 3 + "s";
+      document.body.appendChild(p);
+    }
+  }
+  spawnParticles();
+
+  function toggleTranslate() {
+    const box = document.getElementById("translateBox");
+    box.style.display = box.style.display === "block" ? "none" : "block";
+  }
+
+  function translateTo(lang) {
+    document.querySelectorAll(".translate").forEach(el => {
+      el.innerText = el.dataset[lang];
+    });
+  }
+</script>
+
+</body>
+</html>
